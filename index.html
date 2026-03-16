@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sinanxlord | Fitness Hub</title>
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+background:#000;
+color:#fff;
+font-family:Arial;
+}
+
+.navbar{
+background:#111;
+padding:10px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:6px;
+border-bottom:1px solid #333;
+}
+
+.navbar button{
+background:#111;
+border:1px solid #333;
+color:#fff;
+padding:8px 12px;
+border-radius:20px;
+cursor:pointer;
+}
+
+.page{
+display:none;
+padding:15px;
+max-width:700px;
+margin:auto;
+}
+
+.active-page{
+display:block;
+}
+
+.card{
+background:#111;
+padding:18px;
+border-radius:15px;
+margin-bottom:15px;
+border:1px solid #222;
+}
+
+.blog-content{
+background:#050505;
+padding:15px;
+border-radius:10px;
+border:1px solid #222;
+}
+
+.blog-footer{
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+color:#aaa;
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin:6px 0;
+background:#050505;
+border:1px solid #333;
+border-radius:10px;
+color:#fff;
+}
+
+.btn{
+width:100%;
+padding:10px;
+background:#222;
+border:none;
+color:#fff;
+border-radius:10px;
+margin-top:6px;
+cursor:pointer;
+}
+
+.commentBox{
+background:#050505;
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+border:1px solid #222;
+}
+
+.footer{
+text-align:center;
+padding:20px;
+color:#555;
+border-top:1px solid #222;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+<button onclick="openPage('home')">ANA SAYFA</button>
+<button onclick="openPage('fitness')">FITNESS</button>
+<button onclick="openPage('bmi')">BMI</button>
+<button onclick="openPage('games')">OYUN</button>
+<button onclick="openPage('films')">FİLMLER</button>
+<button onclick="openPage('boykot')">BOYKOT</button>
+<button onclick="openPage('admin')">ADMIN</button>
+</div>
+
+<!-- ANA SAYFA -->
+
+<div id="home" class="page active-page">
+
+<div class="card">
+<h2>Motivasyon</h2>
+<div style="font-size:20px">
+Disiplin güçlü bir vücut ve karakterin temelidir.
+</div>
+</div>
+
+<div class="card">
+
+<h2>Blog</h2>
+
+<div id="blogContent" class="blog-content"></div>
+
+<div class="blog-footer">
+<span id="blogCounter"></span>
+<span id="blogTimer">15s</span>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Yorumlar</h2>
+
+<input id="isim" placeholder="İsminiz">
+<textarea id="yorum" placeholder="Yorum"></textarea>
+
+<button class="btn" onclick="yorumEkle()">Gönder</button>
+
+<div id="yorumListesi"></div>
+
+</div>
+
+</div>
+
+
+<!-- FITNESS -->
+
+<div id="fitness" class="page">
+
+<div class="card">
+
+<h2>Fitness Programı</h2>
+
+<p>Bench Press 4x8</p>
+<p>Incline Press 4x10</p>
+<p>Lat Pulldown 4x10</p>
+<p>Seated Row 4x10</p>
+<p>Squat 4x8</p>
+<p>Leg Press 4x12</p>
+
+</div>
+
+</div>
+
+
+<!-- BMI -->
+
+<div id="bmi" class="page">
+
+<div class="card">
+
+<h2>BMI Hesapla</h2>
+
+<input id="kilo" placeholder="Kilo">
+<input id="boy" placeholder="Boy">
+
+<button class="btn" onclick="bmiHesapla()">Hesapla</button>
+
+<div id="bmiSonuc">-</div>
+
+</div>
+
+</div>
+
+
+<!-- OYUN -->
+
+<div id="games" class="page">
+
+<div class="card">
+
+<h2>Oyun ID</h2>
+
+<p>FC Mobile</p>
+<code>982309458837102594</code>
+
+<p>PUBG Mobile</p>
+<code>51392805274</code>
+
+</div>
+
+</div>
+
+
+<!-- FILMLER -->
+
+<div id="films" class="page">
+
+<div class="card">
+
+<h2>Aksiyon Filmleri</h2>
+
+<ul>
+
+<li>Rocky</li>
+<li>Rambo</li>
+<li>John Wick</li>
+<li>Creed</li>
+<li>Undisputed</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<!-- BOYKOT -->
+
+<div id="boykot" class="page">
+
+<div class="card">
+
+<h2>Boykot Listesi</h2>
+
+<ul>
+
+<li>McDonalds</li>
+<li>Starbucks</li>
+<li>Pepsi</li>
+<li>Coca Cola</li>
+<li>Nestle</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<div id="admin" class="page">
+
+<div class="card">
+
+<h2>Admin Giriş</h2>
+
+<input id="adminMail" placeholder="Email">
+<input id="adminPass" placeholder="Şifre">
+
+<button class="btn" onclick="adminLogin()">Giriş</button>
+
+<div id="adminPanel" style="display:none">
+
+<h3>Blog Ekle</h3>
+
+<textarea id="yeniBlog"></textarea>
+
+<button class="btn" onclick="blogEkle()">Blog Ekle</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="footer">
+
+Sinanxlord Fitness Hub  
+<br>
+Yapımcı: sinanxlord00
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { getFirestore,collection,addDoc,getDocs }
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyCFp4oHYalBK0vOhqfIV3G4djh3hTsfDjs",
+authDomain: "sinanxlord-site.firebaseapp.com",
+projectId: "sinanxlord-site",
+storageBucket: "sinanxlord-site.firebasestorage.app",
+messagingSenderId: "917262484111",
+appId: "1:917262484111:web:6958298b242198b6c526fa",
+measurementId: "G-7LD7653MD0"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+let bloglar=[]
+
+async function bloglariGetir(){
+
+const querySnapshot=await getDocs(collection(db,"bloglar"))
+
+querySnapshot.forEach((doc)=>{
+
+bloglar.push(doc.data().text)
+
+})
+
+blogGoster()
+
+}
+
+bloglariGetir()
+
+
+let blogIndex=0
+let sayac=15
+
+
+function blogGoster(){
+
+document.getElementById("blogContent").innerText=bloglar[blogIndex]
+
+document.getElementById("blogCounter").innerText=(blogIndex+1)+"/"+bloglar.length
+
+}
+
+
+setInterval(()=>{
+
+sayac--
+
+document.getElementById("blogTimer").innerText=sayac+"s"
+
+if(sayac==0){
+
+blogIndex++
+
+if(blogIndex>=bloglar.length){
+blogIndex=0
+}
+
+blogGoster()
+
+sayac=15
+
+}
+
+},1000)
+
+
+window.blogEkle=async function(){
+
+let yeni=document.getElementById("yeniBlog").value
+
+await addDoc(collection(db,"bloglar"),{
+
+text:yeni
+
+})
+
+alert("Blog eklendi")
+
+}
+
+
+window.yorumEkle=async function(){
+
+let isim=document.getElementById("isim").value
+let yorum=document.getElementById("yorum").value
+
+await addDoc(collection(db,"yorumlar"),{
+
+isim:isim,
+yorum:yorum
+
+})
+
+alert("Yorum gönderildi")
+
+}
+
+</script>
+
+
+<script>
+
+function openPage(id){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active-page")
+})
+
+document.getElementById(id).classList.add("active-page")
+
+}
+
+
+function bmiHesapla(){
+
+let kilo=document.getElementById("kilo").value
+let boy=document.getElementById("boy").value/100
+
+let bmi=(kilo/(boy*boy)).toFixed(1)
+
+document.getElementById("bmiSonuc").innerText="BMI: "+bmi
+
+}
+
+
+function adminLogin(){
+
+let mail=document.getElementById("adminMail").value
+let pass=document.getElementById("adminPass").value
+
+if(mail=="admin@sinanxlord.com" && pass=="1234"){
+
+document.getElementById("adminPanel").style.display="block"
+
+}
+
+else{
+
+alert("Hatalı giriş")
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
